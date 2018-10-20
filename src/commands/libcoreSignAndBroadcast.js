@@ -96,7 +96,8 @@ async function signTransaction({
   const additionals = []
   let expiryHeight
   if (currencyId === 'bitcoin_cash' || currencyId === 'bitcoin_gold') additionals.push('bip143')
-  if (currencyId === 'zcash') expiryHeight = Buffer.from([0x00, 0x00, 0x00, 0x00])
+  if (currencyId === 'decred') additionals.push('decred')
+  if (currencyId === 'zcash' || currencyId === 'decred') expiryHeight = Buffer.from([0x00, 0x00, 0x00, 0x00])
   const rawInputs = transaction.getInputs()
 
   const hasExtraData = currencyId === 'zcash'
@@ -105,12 +106,20 @@ async function signTransaction({
     rawInputs.map(async input => {
       const rawPreviousTransaction = await input.getPreviousTransaction()
       const hexPreviousTransaction = Buffer.from(rawPreviousTransaction).toString('hex')
+
+      const additionals = []
+      if (currencyId === 'decred') {
+        additionals.push('decred')
+      }
+
       const previousTransaction = hwApp.splitTransaction(
         hexPreviousTransaction,
         supportsSegwit,
         hasTimestamp,
         hasExtraData,
+        additionals
       )
+
       const outputIndex = input.getPreviousOutputIndex()
       const sequence = input.getSequence()
       return [
@@ -121,6 +130,8 @@ async function signTransaction({
       ]
     }),
   )
+console.log(" <<<<<< Done with splitTransaction");
+console.log(inputs[0][0]);
 
   const associatedKeysets = rawInputs.map(input => {
     const derivationPaths = input.getDerivationPath()
@@ -141,13 +152,60 @@ async function signTransaction({
 
   const changePath = output ? output.getDerivationPath().toString() : undefined
   const outputScriptHex = Buffer.from(transaction.serializeOutputs()).toString('hex')
+  console.log(`outputScriptHex = `, outputScriptHex);
   const initialTimestamp = hasTimestamp ? transaction.getTimestamp() : undefined
 
   // FIXME
   // should be `transaction.getLockTime()` as soon as lock time is
   // handled by libcore (actually: it always returns a default value
   // and that caused issue with zcash (see #904))
+  //const lockTime = undefined
   const lockTime = undefined
+
+
+  const logs = {
+    associatedKeysets,
+    changePath,
+    outputScriptHex,
+    lockTime,
+    sigHashType,
+    isSegwit,
+    initialTimestamp,
+    additionals,
+    expiryHeight,
+  }
+
+
+  console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  const logsCreate = {
+    inputs,
+    associatedKeysets,
+    changePath,
+    outputScriptHex,
+    lockTime,
+    sigHashType,
+    isSegwit,
+    initialTimestamp,
+    additionals,
+    expiryHeight,
+  }
+  // console.log(logsCreate);
+  // console.log(changePath);
+  // // console.log(logs);
+  // // console.log(inputs);
+  // console.log(`inputs[1] = `, inputs[1]);
+  // console.log(inputs[0][0].inputs);
+  // //Buffer.from(transaction.serializeOutputs()).toString('hex')
+  // console.log(" >>>> Previous transactions: input");
+  // console.log(Buffer.from(inputs[0][0].inputs[0].prevout).toString('hex'));
+  //
+  // console.log(inputs[0][0].outputs);
+  // console.log(" >>>> Previous transactions: outputs");
+  // console.log(` >>>> Output 0, amount : ${Buffer.from(inputs[0][0].outputs[0].amount).toString('hex')}`);
+  // console.log(` >>>> Output 0, script : ${Buffer.from(inputs[0][0].outputs[0].script).toString('hex')}`);
+  // console.log(` >>>> Output 1, amount : ${Buffer.from(inputs[0][0].outputs[1].amount).toString('hex')}`);
+  // console.log(` >>>> Output 1, script : ${Buffer.from(inputs[0][0].outputs[1].script).toString('hex')}`);
+  // console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 
   const signedTransaction = await hwApp.createPaymentTransactionNew(
     inputs,
@@ -161,7 +219,8 @@ async function signTransaction({
     additionals,
     expiryHeight,
   )
-
+console.log(" >>> Got signed tx: ");
+console.log(signTransaction);
   return signedTransaction
 }
 
