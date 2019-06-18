@@ -30,6 +30,8 @@ export const getCurrencyBridge = (currency: CryptoCurrency): CurrencyBridge => {
       return EthereumJSBridge.currencyBridge
     case 'bitcoin':
       return LibcoreBridge.currencyBridge
+    case 'cosmos':
+      return LibcoreBridge.currencyBridge
     default:
       return mockCurrencyBridge // fallback mock until we implement it all!
   }
@@ -44,6 +46,8 @@ export const getAccountBridge = (account: Account): AccountBridge<any> => {
       return RippleJSBridge.accountBridge
     case 'ethereum':
       return EthereumJSBridge.accountBridge
+    case 'cosmos':
+      return LibcoreBridge.accountBridge
     default:
       throw new CurrencyNotSupported('currency not supported', {
         currencyName: account.currency.name,

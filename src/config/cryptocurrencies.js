@@ -30,6 +30,7 @@ const supported: CryptoCurrencyIds[] = [
   'clubcoin',
   'decred',
   'bitcoin_testnet',
+  'cosmos'
 ]
 
 export const listCryptoCurrencies: (

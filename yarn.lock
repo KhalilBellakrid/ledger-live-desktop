@@ -1502,6 +1502,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.4.4":
+  version "7.4.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
+  integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -1776,7 +1783,7 @@
     node-hid "^0.7.9"
     usb "^1.6.0"
 
-"@ledgerhq/hw-transport@4.61.0", "@ledgerhq/hw-transport@^4.61.0":
+"@ledgerhq/hw-transport@4.61.0", "@ledgerhq/hw-transport@^4.35.0", "@ledgerhq/hw-transport@^4.61.0":
   version "4.61.0"
   resolved "https://registry.yarnpkg.com/@ledgerhq/hw-transport/-/hw-transport-4.61.0.tgz#709d9ec3c0c536181374a438db27e635059d3328"
   integrity sha512-jsITF3HAttITBVKZOEASeTSBENbnrhcZmyxhiI1ijRFqDSEAPp7LuttNnI1d99301/4dWZV9NSe40naBsCJHXQ==
@@ -1785,18 +1792,14 @@
     "@ledgerhq/errors" "^4.61.0"
     events "^3.0.0"
 
-"@ledgerhq/ledger-core@^2.3.0-beta.9":
-  version "2.3.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@ledgerhq/ledger-core/-/ledger-core-2.3.0-beta.9.tgz#0f51bbcb898d365575a0f1a220308923c37cb294"
-  integrity sha512-R70o7ZMG7wUc3flk1jFH21jHxwbkPMwPij2IuLsk3GyigV/aU1MbzBscFOMop7LIDRdPkAV9bQjm7BDtKTNvdQ==
+"@ledgerhq/ledger-core@../lib-ledger-core-node-bindings":
+  version "2.3.0-beta.10"
   dependencies:
     bindings "^1.3.0"
     nan "^2.6.2"
 
-"@ledgerhq/live-common@6":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@ledgerhq/live-common/-/live-common-6.1.1.tgz#0d618e1ff8096dd9806d40aa0fec6af42107ee0c"
-  integrity sha512-24V7/u2lkgURwRuXik3c6PdBnn1+N1D5hN+o4vBc1UI0cmdUNbDs5UwpXeCyOvc27VraMe0DVkKF89YTTko+sA==
+"@ledgerhq/live-common@../ledger-live-common":
+  version "6.6.2"
   dependencies:
     "@ledgerhq/errors" "4.61.0"
     "@ledgerhq/hw-app-btc" "4.61.0"
@@ -1810,6 +1813,7 @@
     eip55 "^1.0.3"
     ethereumjs-tx "^1.3.7"
     invariant "^2.2.2"
+    ledger-cosmos-js "^2.0.2"
     lodash "^4.17.11"
     lru-cache "4.1.3"
     numeral "^2.0.6"
@@ -1821,7 +1825,7 @@
     ripple-binary-codec "^0.2.0"
     ripple-bs58check "^2.0.2"
     ripple-hashes "^0.3.1"
-    ripple-lib "^1.2.3"
+    ripple-lib "1.1.2"
     rxjs "^6.5.2"
     rxjs-compat "^6.5.2"
 
@@ -4269,7 +4273,7 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bech32@^1.1.2:
+bech32@^1.1.2, bech32@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/bech32/-/bech32-1.1.3.tgz#bd47a8986bbb3eec34a56a097a84b8d3e9a2dfcd"
   integrity sha512-yuVFUvrNcoJi0sv5phmqc6P+Fl1HjRDRNOOkHY2X/3LBy2bIGNSFx4fZ95HMaXHupuS7cZR15AsvtmCIF4UEyg==
@@ -10812,6 +10816,16 @@ leb@^0.3.0:
   resolved "https://registry.yarnpkg.com/leb/-/leb-0.3.0.tgz#32bee9fad168328d6aea8522d833f4180eed1da3"
   integrity sha1-Mr7p+tFoMo1q6oUi2DP0GA7tHaM=
 
+ledger-cosmos-js@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ledger-cosmos-js/-/ledger-cosmos-js-2.0.2.tgz#642f8e98b81e18a81087cb91989a35131ab62587"
+  integrity sha512-VWm1U786kGIwMkCcuOLH1D/q4wqPdeUO6uMioBVSKrOO4hhIajYg4nmGvzgtXQH2I8ocUelNJcH7Wo1r1Esyew==
+  dependencies:
+    "@babel/runtime" "^7.4.4"
+    "@ledgerhq/hw-transport" "^4.35.0"
+    bech32 "^1.1.3"
+    ripemd160 "^2.0.2"
+
 left-pad@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
@@ -14579,7 +14593,7 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
-ripemd160@^2.0.0, ripemd160@^2.0.1:
+ripemd160@^2.0.0, ripemd160@^2.0.1, ripemd160@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-2.0.2.tgz#a1c1a6f624751577ba5d07914cbc92850585890c"
   integrity sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==
@@ -14595,10 +14609,10 @@ ripple-address-codec@^2.0.1:
     hash.js "^1.0.3"
     x-address-codec "^0.7.0"
 
-ripple-binary-codec@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/ripple-binary-codec/-/ripple-binary-codec-0.2.1.tgz#f343da758a64f3aceb4164b8a98fbc153b088c14"
-  integrity sha512-R1+equWtaJs505/G2NRvxKJVlMkZMqo4fiE6eBXi1c2IvL7dDRZPlb8JHdSgD6eT/Qo5TkovuUf3qmRz5dinNw==
+ripple-binary-codec@0.2.0, ripple-binary-codec@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ripple-binary-codec/-/ripple-binary-codec-0.2.0.tgz#cef049f671f398de255e5c190b9f6545c7c7c36f"
+  integrity sha512-qCf3syhtwPFq70JIh/7VSegynj5gWXVNI5T5I7dobqiNxY3fZQvOePRnchnN1OzC0jMh8x0b2ASmkvIlf259zQ==
   dependencies:
     babel-runtime "^6.6.1"
     bn.js "^4.11.3"
@@ -14612,19 +14626,6 @@ ripple-binary-codec@^0.1.0, ripple-binary-codec@^0.1.13:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ripple-binary-codec/-/ripple-binary-codec-0.1.13.tgz#c68951405a17a71695551e789966ff376da552e4"
   integrity sha1-xolRQFoXpxaVVR54mWb/N22lUuQ=
-  dependencies:
-    babel-runtime "^6.6.1"
-    bn.js "^4.11.3"
-    create-hash "^1.1.2"
-    decimal.js "^5.0.8"
-    inherits "^2.0.1"
-    lodash "^4.12.0"
-    ripple-address-codec "^2.0.1"
-
-ripple-binary-codec@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/ripple-binary-codec/-/ripple-binary-codec-0.2.0.tgz#cef049f671f398de255e5c190b9f6545c7c7c36f"
-  integrity sha512-qCf3syhtwPFq70JIh/7VSegynj5gWXVNI5T5I7dobqiNxY3fZQvOePRnchnN1OzC0jMh8x0b2ASmkvIlf259zQ==
   dependencies:
     babel-runtime "^6.6.1"
     bn.js "^4.11.3"
@@ -14648,16 +14649,6 @@ ripple-bs58check@^2.0.2:
   dependencies:
     create-hash "^1.1.0"
     ripple-bs58 "^4.0.0"
-
-ripple-hashes@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/ripple-hashes/-/ripple-hashes-0.3.2.tgz#f3ac3b1832cec6d0bac07e82acc10a0a6a1cc84e"
-  integrity sha512-1Emm/raLNChNR5nVoQPJ7NWQpHr8jJjIZDoug4ukw4RZ3+eehO5nyx86a+MaQKAeAc1nJRFwVjBvh9SeYpelYw==
-  dependencies:
-    bignumber.js "^4.1.0"
-    create-hash "^1.1.2"
-    ripple-address-codec "^2.0.1"
-    ripple-binary-codec "0.2.1"
 
 ripple-hashes@^0.3.1:
   version "0.3.1"
@@ -14697,6 +14688,24 @@ ripple-lib-transactionparser@^0.6.2:
     bignumber.js "^4.1.0"
     lodash "^4.17.4"
 
+ripple-lib@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/ripple-lib/-/ripple-lib-1.1.2.tgz#e9cf21e7ac61c70c90dd0b105bacc561e5046f12"
+  integrity sha512-LPWsOi0trS1gcBKJpQPA9vDCn3IUfW0RYaWLLlELoNQY0MJUOG1e0J3qQlDrL+/gRW/MywlPtux5D+I4GiEVHw==
+  dependencies:
+    "@types/lodash" "^4.14.85"
+    "@types/ws" "^3.2.0"
+    bignumber.js "^4.1.0"
+    https-proxy-agent "2.2.1"
+    jsonschema "1.2.2"
+    lodash "^4.17.4"
+    ripple-address-codec "^2.0.1"
+    ripple-binary-codec "0.2.0"
+    ripple-hashes "^0.3.1"
+    ripple-keypairs "^0.10.1"
+    ripple-lib-transactionparser "0.7.1"
+    ws "^3.3.1"
+
 ripple-lib@^1.0.0-beta.0:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/ripple-lib/-/ripple-lib-1.0.0-beta.2.tgz#f2e6ebc0b6b184746ae68f80a1042395dd49a6be"
@@ -14713,24 +14722,6 @@ ripple-lib@^1.0.0-beta.0:
     ripple-hashes "^0.3.1"
     ripple-keypairs "^0.10.1"
     ripple-lib-transactionparser "^0.6.2"
-    ws "^3.3.1"
-
-ripple-lib@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/ripple-lib/-/ripple-lib-1.2.3.tgz#0f3ee301fbc66e5fcd2045f25ed7f181541b346a"
-  integrity sha512-5UdVwviXAqfVfxn6xoEe5nePMl8QwsOV0UdVxuEfHGQ6DQUs8qfb2LGcvCXY/nLpKvkBwFqcQJP9BMc3CEng6Q==
-  dependencies:
-    "@types/lodash" "^4.14.85"
-    "@types/ws" "^3.2.0"
-    bignumber.js "^4.1.0"
-    https-proxy-agent "2.2.1"
-    jsonschema "1.2.2"
-    lodash "^4.17.4"
-    ripple-address-codec "^2.0.1"
-    ripple-binary-codec "0.2.1"
-    ripple-hashes "0.3.2"
-    ripple-keypairs "^0.10.1"
-    ripple-lib-transactionparser "0.7.1"
     ws "^3.3.1"
 
 rlp@^2.0.0:
